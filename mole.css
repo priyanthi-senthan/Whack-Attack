@@ -1,0 +1,235 @@
+/* General body styling */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background: url("./mario-bg.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0 15px; /* Added padding for mobile view */
+}
+
+/* Game header styling */
+.game-header {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    position: relative; /* Allow positioning of the logout button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack buttons vertically */
+}
+
+/* Style for the logout button to position it at the top-right corner */
+#h1lgout {
+     position: absolute; 
+     top: 10px;
+    right: 10px; 
+    font-size: 16px;
+    padding: 5px 5px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    z-index: 10; /* Ensure the button is above other elements */
+}
+
+/* Make sure the buttons below the logout button do not overlap */
+.game-header button {
+    margin-top: 10px;
+}
+
+/* Make sure the buttons are aligned horizontally (except logout) */
+.game-header button#restart-button,
+.game-header button#banana-bonus-button {
+    width: auto;
+}s
+
+#logout-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+#logout-button:active {
+    background-color: #c62828; /* Even darker red when clicked */
+}
+
+
+.game-header h1, .game-header #score, .game-header #restart-button {
+    margin-bottom: 10px;
+}
+
+/* Score and timer styling */
+#score, #timer {
+    font-size: 20px;
+    color: black;
+    margin: 10px 0;
+}
+
+/* Board styling */
+#board {
+    width: 540px;
+    height: 540px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap;
+    background: url("./soil.png");
+    background-size: cover;
+    border: 3px solid white;
+    border-radius: 25px;
+}
+
+/* Individual tiles in the board */
+#board div {
+    width: 180px; 
+    height: 180px;
+    background-image: url("./pipe.png");
+    background-size: cover;
+}
+
+/* Images inside tiles */
+#board div img {
+    width: 100px;
+    height: 100px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Button styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #4CAF50; /* Green background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button:active {
+    background-color: #3e8e41; /* Even darker green when clicked */
+}
+
+button:focus {
+    outline: none;
+}
+
+/* Form container styling for login/register */
+.form-container {
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 300px; /* Sets a maximum width for smaller devices */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Form input styling */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Invalid input styling for validation feedback */
+input:invalid {
+    border-color: red;
+}
+
+input:invalid:focus {
+    outline-color: red;
+}
+
+input:valid {
+    border-color: green;
+}
+
+/* Paragraph styling */
+p {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Media query for responsive form container */
+@media (max-width: 480px) {
+    .form-container {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    #board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    #board div {
+        width: 100px;
+        height: 100px;
+    }
+    
+    button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #board {
+        width: 240px;
+        height: 240px;
+    }
+
+    #board div {
+        width: 80px;
+        height: 80px;
+    }
+    
+    #score, #timer {
+        font-size: 18px;
+    }
+}
+
+/* Styling for banana fact text */
+#banana-fact {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc00; /* Banana yellow */
+    margin-top: 20px;
+}
