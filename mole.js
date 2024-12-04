@@ -88,8 +88,10 @@ class Game {
         if (this.gameOver) return;
         if (this.currMoleTile) this.currMoleTile.clear();
 
-        const moleTile = this.getRandomTile();
-        if (moleTile === this.currPlantTile) return; // Don't place mole on a plant
+        let moleTile;
+        do {
+            moleTile = this.getRandomTile();
+        } while (moleTile === this.currPlantTile);
 
         this.currMoleTile = moleTile;
         this.currMoleTile.placeMole();
@@ -100,8 +102,10 @@ class Game {
         if (this.gameOver) return;
         if (this.currPlantTile) this.currPlantTile.clear();
 
-        const plantTile = this.getRandomTile();
-        if (plantTile === this.currMoleTile) return; // Don't place plant on a mole
+        let plantTile;
+        do {
+            plantTile = this.getRandomTile();
+        } while (plantTile === this.currMoleTile);
 
         this.currPlantTile = plantTile;
         this.currPlantTile.placePlant();
@@ -146,6 +150,31 @@ class Tile {
     }
 }
 
+// Redirect to the Banana game and fetch bonus
+async function useBananaBonus() {
+    // Redirect to the Banana game
+    window.open("https://marcconrad.com/uob/banana/index.php", "_blank");
+
+    // Fetch the bonus score after a delay
+    setTimeout(async () => {
+        try {
+            const response = await fetch("https://marcconrad.com/uob/banana/api.php");
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            const bonus = data.solution;
+
+            alert(`Congratulations! You've earned a bonus of ${bonus} points!`);
+            game.score += parseInt(bonus);
+            document.getElementById("score").innerText = `Score: ${game.score}`;
+        } catch (error) {
+            console.error("Error fetching Banana API bonus:", error);
+            alert("Failed to retrieve the Banana bonus.");
+        }
+    }, 10000); // Simulate a 10-second delay for playing the Banana game
+}
+
 // When the page loads, start the game
 const game = new Game();
 window.onload = function () {
@@ -153,4 +182,5 @@ window.onload = function () {
 
     // Attach event listeners
     document.getElementById("restart-button").addEventListener("click", () => game.restart());
+    document.getElementById("banana-bonus-button").addEventListener("click", () => useBananaBonus());
 };
